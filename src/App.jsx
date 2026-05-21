@@ -98,7 +98,7 @@ export default function App() {
         <div className="wrap">
           <Reveal>
             <Head eyebrow="MDP Insight" title="Why the ordering is counterintuitive"
-              sub="Starting with a pricier model can be cheaper overall. Pick a dataset and toggle the two orderings." />
+              sub="Starting with a pricier model can be cheaper overall. Pick a dataset and compare the two orderings side by side." />
             <OrderingToggle />
           </Reveal>
         </div>
