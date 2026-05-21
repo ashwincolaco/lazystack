@@ -27,7 +27,7 @@ const Box = ({ x, y, w, h, label, cost, fill, stroke, faded, dark }) => (
 )
 
 export default function LazyStackTeaser() {
-  const w = 960, h = 380
+  const w = 960, h = 408
   const models = [
     ['mobilenet', '3 ms'], ['resnet18', '6 ms'], ['resnet50', '14 ms'],
     ['effnet-b0', '16 ms'], ['resnet101', '28 ms'], ['effnet-b3', '38 ms'],
@@ -35,7 +35,7 @@ export default function LazyStackTeaser() {
   return (
     <svg viewBox={`0 0 ${w} ${h}`} width="100%" style={{ maxWidth: 980, display: 'block', margin: '0 auto' }} xmlns="http://www.w3.org/2000/svg">
       {/* ---------------- LEFT: full stacker ---------------- */}
-      <rect x={16} y={40} width={300} height={320} rx={12} fill={col.redSoft} stroke="#fecaca" strokeWidth={1} />
+      <rect x={16} y={40} width={300} height={356} rx={12} fill={col.redSoft} stroke="#fecaca" strokeWidth={1} />
       <text x={166} y={66} textAnchor="middle" fontSize="14" fontWeight="700" fill={col.red} fontFamily="Inter, sans-serif">Full Stacker</text>
       <text x={166} y={84} textAnchor="middle" fontSize="11" fill={col.slate} fontFamily="Inter, sans-serif">run every model on every input</text>
       <Box x={116} y={98} w={100} h={26} label="input" fill="#fff" stroke={col.line} />
@@ -45,13 +45,13 @@ export default function LazyStackTeaser() {
           <Box x={86} y={132 + i * 38} w={160} h={28} label={m[0]} cost={m[1]} fill="#fee2e2" stroke="#f87171" />
         </g>
       ))}
-      <text x={166} y={352} textAnchor="middle" fontSize="11.5" fontWeight="600" fill={col.red} fontFamily="Inter, sans-serif">105 ms · 1× · full accuracy</text>
+      <text x={166} y={378} textAnchor="middle" fontSize="11.5" fontWeight="600" fill={col.red} fontFamily="Inter, sans-serif">105 ms · 1× · full accuracy</text>
 
       {/* center vs */}
       <text x={345} y={205} textAnchor="middle" fontSize="15" fontWeight="800" fill={col.mute} fontFamily="Inter, sans-serif">vs</text>
 
       {/* ---------------- RIGHT: LazyStack ---------------- */}
-      <rect x={374} y={40} width={570} height={320} rx={12} fill={col.blueSoft} stroke="#c7d2fe" strokeWidth={1} />
+      <rect x={374} y={40} width={570} height={356} rx={12} fill={col.blueSoft} stroke="#c7d2fe" strokeWidth={1} />
       <text x={659} y={66} textAnchor="middle" fontSize="14" fontWeight="700" fill={col.blue} fontFamily="Inter, sans-serif">LazyStack</text>
       <text x={659} y={84} textAnchor="middle" fontSize="11" fill={col.slate} fontFamily="Inter, sans-serif">MDP-discovered trajectory + early exit via prefix substackers</text>
 

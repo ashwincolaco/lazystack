@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import data from '../data/case_studies.json'
+import Icon from './Icon'
 
 const THETA = data.theta // 0.85
 const STEP_MS = 1500
@@ -47,8 +48,8 @@ export default function CascadeDemo() {
       {/* modality toggle */}
       <div className="controls" style={{ marginTop: 0, marginBottom: 18 }}>
         <div className="toggle">
-          <button className={mod === 'image' ? 'active' : ''} onClick={() => reset('image')}>🖼 Image · CIFAR-100</button>
-          <button className={mod === 'text' ? 'active' : ''} onClick={() => reset('text')}>🔤 Text · MMLU</button>
+          <button className={mod === 'image' ? 'active' : ''} onClick={() => reset('image')}><Icon name="image" /> Image · CIFAR-100</button>
+          <button className={mod === 'text' ? 'active' : ''} onClick={() => reset('text')}><Icon name="text" /> Text · MMLU</button>
         </div>
       </div>
 
@@ -115,11 +116,11 @@ export default function CascadeDemo() {
 
       {/* controls */}
       <div className="controls">
-        <button className="pill-btn" onClick={() => { setStep(0); setPlaying(false) }}>⏮ Reset</button>
+        <button className="pill-btn" onClick={() => { setStep(0); setPlaying(false) }}><Icon name="reset" /> Reset</button>
         <button className="pill-btn primary" onClick={() => (exited ? reset(mod) : setPlaying((p) => !p))}>
-          {exited ? '↻ Replay' : playing ? '⏸ Pause' : '▶ Play'}
+          {exited ? <><Icon name="replay" /> Replay</> : playing ? <><Icon name="pause" /> Pause</> : <><Icon name="play" /> Play</>}
         </button>
-        <button className="pill-btn" onClick={() => { setPlaying(false); setStep((s) => Math.min(s + 1, steps.length)) }}>Step ▸</button>
+        <button className="pill-btn" onClick={() => { setPlaying(false); setStep((s) => Math.min(s + 1, steps.length)) }}>Step <Icon name="step" /></button>
       </div>
 
       <p style={{ textAlign: 'center', color: C.mute, fontSize: 12, marginTop: 10 }}>
