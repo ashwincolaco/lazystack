@@ -3,10 +3,9 @@ import Icon from './Icon'
 
 const LINKS = [
   ['abstract', 'Abstract'],
-  ['demo', 'Demo'],
+  ['demo', 'Results'],
   ['method', 'Method'],
   ['scale', 'Why it scales'],
-  ['results', 'Results'],
 ]
 
 export default function NavBar({ paperUrl }) {

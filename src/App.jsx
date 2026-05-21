@@ -90,9 +90,14 @@ export default function App() {
       <section id="demo">
         <div className="wrap">
           <Reveal>
-            <Head eyebrow="Interactive" title="Tune the accuracy–speed tradeoff"
+            <Head eyebrow="Results" title="Tune the accuracy–speed tradeoff"
               sub="Drag the exit threshold θ and cost-weight α and watch LazyStack move along its Pareto frontier — it dominates ABC at every operating point." />
             <Playground />
+            <p className="prose" style={{ marginTop: 28, fontSize: 16, textAlign: 'center' }}>
+              Across benchmarks, LazyStack has the highest accuracy among efficient methods on MMLU, ARC-Challenge, and
+              HEADLINES; on NSL-KDD it is <b>7× faster than ABC</b> while also more accurate; and it matches or exceeds
+              the white-box Gatekeeper baseline using probability outputs only.
+            </p>
           </Reveal>
         </div>
       </section>
@@ -136,25 +141,6 @@ export default function App() {
             <Head eyebrow="Analysis" title="Why it scales"
               sub="Two empirical facts make LazyStack tractable and fast — each chart below shows one." />
             <TrajectoryLandscape />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* RESULTS */}
-      <section id="results">
-        <div className="wrap">
-          <Reveal>
-            <Head eyebrow="Results" title="Results at a glance" />
-            <div className="stats">
-              <div className="stat"><div className="num">38×</div><div className="lbl">speedup on NSL-KDD (vs full ensemble)</div></div>
-              <div className="stat"><div className="num">97%+</div><div className="lbl">accuracy retention across 8 benchmarks</div></div>
-              <div className="stat"><div className="num">3–8</div><div className="lbl">trajectories cover 95%+ of inputs</div></div>
-            </div>
-            <p className="prose" style={{ marginTop: 30, fontSize: 16 }}>
-              LazyStack achieves the highest accuracy among efficient methods on MMLU, ARC-Challenge, and HEADLINES;
-              on NSL-KDD it is 7× faster than ABC while also more accurate; and it matches or exceeds the white-box
-              Gatekeeper baseline using probability outputs only.
-            </p>
           </Reveal>
         </div>
       </section>
