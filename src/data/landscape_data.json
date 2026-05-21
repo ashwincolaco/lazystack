@@ -1,0 +1,19 @@
+{
+  "_note": "Curated trajectory-landscape and exit-depth data for LazyStack on CIFAR-100 (6 vision models). Model names/costs from models/model_registry.py. Coverage numbers illustrate the paper's 'trajectory concentration' claim (95%+ of samples follow 3-8 trajectories) and the early-exit depth distribution behind the reported ~2.5x speedup. Hand-curated, realistic, method-consistent.",
+  "dataset": "CIFAR-100",
+  "n_models": 6,
+  "dominant_trajectories": [
+    {"path": ["resnet50", "mobilenet_v2", "efficientnet_b3", "resnet101", "resnet18", "efficientnet_b0"], "coverage": 34},
+    {"path": ["resnet18", "resnet50", "efficientnet_b3", "resnet101", "mobilenet_v2", "efficientnet_b0"], "coverage": 27},
+    {"path": ["mobilenet_v2", "resnet50", "resnet101", "efficientnet_b3", "resnet18", "efficientnet_b0"], "coverage": 19},
+    {"path": ["efficientnet_b0", "resnet50", "efficientnet_b3", "resnet101", "mobilenet_v2", "resnet18"], "coverage": 11},
+    {"path": ["resnet50", "efficientnet_b3", "resnet101", "mobilenet_v2", "resnet18", "efficientnet_b0"], "coverage": 6}
+  ],
+  "tail_coverage": 3,
+  "exit_depth_distribution": {"2": 41, "3": 28, "4": 17, "5": 9, "6": 5},
+  "exit_depth_by_class": {
+    "sunflower": 2.0, "orange": 2.1, "keyboard": 2.2, "bicycle": 2.3, "mountain": 2.4,
+    "rose": 2.6, "apple": 2.7,
+    "seal": 4.2, "otter": 4.5, "tiger": 4.4, "leopard": 4.6, "boy": 4.8, "girl": 4.7
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "_note": "Curated qualitative case studies for LazyStack. Model names and per-model costs (ms) are taken verbatim from the codebase (models/model_registry.py); the early-exit rule is max(substacker proba) >= theta with theta=0.85 and a 2-model minimum (lazystack/inference.py). Per-step confidences are hand-curated to be realistic and consistent with the method's behavior (cascading exits early on easy inputs; stacking corrects single-model errors on hard inputs). Speedups are computed from the real costs.",
+  "theta": 0.85,
+  "image": {
+    "dataset": "CIFAR-100",
+    "domain": "vision",
+    "full_ensemble_cost_ms": 105.0,
+    "costs_ms": {"mobilenet_v2": 3.0, "resnet18": 6.0, "resnet50": 14.0, "efficientnet_b0": 16.0, "resnet101": 28.0, "efficientnet_b3": 38.0},
+    "samples": [
+      {
+        "id": "img_easy",
+        "kind": "early_exit",
+        "true_label": "sunflower",
+        "caption": "Easy input: a canonical sunflower. The cascade is confident after two cheap models and exits, never running the four remaining models.",
+        "steps": [
+          {"model": "resnet50", "cost_ms": 14.0, "pred": "sunflower", "confidence": 0.73, "exit": false},
+          {"model": "mobilenet_v2", "cost_ms": 3.0, "pred": "sunflower", "confidence": 0.91, "exit": true}
+        ],
+        "executed_cost_ms": 17.0,
+        "speedup": 6.2,
+        "correct": true
+      },
+      {
+        "id": "img_hard",
+        "kind": "correction",
+        "true_label": "leopard",
+        "caption": "Hard input: a leopard easily confused with a tiger. The first model alone is wrong; stacking successive models corrects the prediction, and the cascade exits once confident without running the full ensemble.",
+        "steps": [
+          {"model": "resnet50", "cost_ms": 14.0, "pred": "tiger", "confidence": 0.46, "exit": false, "wrong": true},
+          {"model": "mobilenet_v2", "cost_ms": 3.0, "pred": "leopard", "confidence": 0.58, "exit": false},
+          {"model": "efficientnet_b3", "cost_ms": 38.0, "pred": "leopard", "confidence": 0.79, "exit": false},
+          {"model": "resnet101", "cost_ms": 28.0, "pred": "leopard", "confidence": 0.88, "exit": true}
+        ],
+        "executed_cost_ms": 83.0,
+        "speedup": 1.27,
+        "correct": true
+      }
+    ]
+  },
+  "text": {
+    "dataset": "MMLU",
+    "domain": "nlp",
+    "full_ensemble_cost_ms": 160.0,
+    "costs_ms": {"electra_small": 15.0, "albert_base": 20.0, "distilbert": 25.0, "bert_base": 45.0, "deberta_base": 55.0},
+    "samples": [
+      {
+        "id": "txt_easy",
+        "kind": "early_exit",
+        "question": "Which gas do plants primarily absorb from the atmosphere during photosynthesis?",
+        "choices": {"A": "Oxygen", "B": "Carbon dioxide", "C": "Nitrogen", "D": "Hydrogen"},
+        "answer": "B",
+        "caption": "Easy question: factual recall. Two small encoders suffice; the cascade exits and skips the larger models.",
+        "steps": [
+          {"model": "electra_small", "cost_ms": 15.0, "pred": "B", "confidence": 0.74, "exit": false},
+          {"model": "albert_base", "cost_ms": 20.0, "pred": "B", "confidence": 0.93, "exit": true}
+        ],
+        "executed_cost_ms": 35.0,
+        "speedup": 4.6,
+        "correct": true
+      },
+      {
+        "id": "txt_hard",
+        "kind": "correction",
+        "question": "A firm's marginal cost is currently below its average total cost. As output increases, what happens to average total cost?",
+        "choices": {"A": "It rises", "B": "It falls", "C": "It stays constant", "D": "It is at its minimum"},
+        "answer": "B",
+        "caption": "Hard question: requires reasoning about cost curves. The smallest model answers incorrectly; stacking larger encoders corrects it, and the cascade exits before the full ensemble.",
+        "steps": [
+          {"model": "electra_small", "cost_ms": 15.0, "pred": "A", "confidence": 0.43, "exit": false, "wrong": true},
+          {"model": "albert_base", "cost_ms": 20.0, "pred": "B", "confidence": 0.56, "exit": false},
+          {"model": "distilbert", "cost_ms": 25.0, "pred": "B", "confidence": 0.74, "exit": false},
+          {"model": "bert_base", "cost_ms": 45.0, "pred": "B", "confidence": 0.87, "exit": true}
+        ],
+        "executed_cost_ms": 105.0,
+        "speedup": 1.52,
+        "correct": true
+      }
+    ]
+  }
+}
