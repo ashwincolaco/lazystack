@@ -27,14 +27,14 @@
       "id": "agnews", "kind": "text", "dataset": "AG News", "true": "Business",
       "prompt": "“Oil prices climb as supply concerns mount”",
       "LazyStack":    { "steps": [["electra_small","Sci/Tech",true],["albert_base","Business",false],["distilbert","Business",false]], "cost": 60, "correct": true, "why": "first model wrong; stacking corrects, conf 0.90 > θ" },
-      "ABC":          { "steps": [["electra_small","Sci/Tech",true],["albert_base","Business",false],["bert_base","Business",false]], "cost": 80, "correct": true, "why": "agreement after 3 models" },
+      "ABC":          { "steps": [["electra_small","Sci/Tech",true],["albert_base","Sci/Tech",true]], "cost": 35, "correct": false, "why": "the two cheap models agree on Sci/Tech — low variance, but the consensus is wrong" },
       "Cost-Cascade": { "steps": [["electra_small","Sci/Tech",true]], "cost": 15, "correct": false, "why": "exits at conf 0.88 > θ — but wrong" }
     },
     {
       "id": "sst5", "kind": "text", "dataset": "SST-5", "true": "very positive",
       "prompt": "“An absolute triumph — one of the year's very best.”",
       "LazyStack":    { "steps": [["electra_small","positive",true],["albert_base","very positive",false]], "cost": 35, "correct": true, "why": "fine-grained label corrected by stacking, conf 0.91 > θ" },
-      "ABC":          { "steps": [["electra_small","positive",true],["albert_base","very positive",false],["distilbert","very positive",false]], "cost": 60, "correct": true, "why": "agreement after 3 models" },
+      "ABC":          { "steps": [["electra_small","positive",true],["albert_base","positive",true]], "cost": 35, "correct": false, "why": "both models agree on the coarser 'positive' — agreement is high, but it misses 'very positive'" },
       "Cost-Cascade": { "steps": [["electra_small","positive",true]], "cost": 15, "correct": false, "why": "exits confidently on the coarser label — but wrong" }
     },
     {
