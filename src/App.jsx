@@ -97,8 +97,8 @@ export default function App() {
       <section>
         <div className="wrap">
           <Reveal>
-            <Head eyebrow="Interactive" title="Why the ordering is counterintuitive"
-              sub="Starting with a pricier model can be cheaper overall. Toggle the two orderings." />
+            <Head eyebrow="MDP Insight" title="Why the ordering is counterintuitive"
+              sub="Starting with a pricier model can be cheaper overall. Pick a dataset and toggle the two orderings." />
             <OrderingToggle />
           </Reveal>
         </div>
