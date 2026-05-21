@@ -1,0 +1,41 @@
+{
+  "_note": "Curated qualitative traces contrasting LazyStack with two cascade baselines (ABC = agreement-based, Cost-Cascade = cheapest-first + raw confidence) on the same inputs. Model names/costs from models/model_registry.py; behavior is hand-curated to be realistic and consistent with the paper (baselines exit early-and-wrong or run near-everything; LazyStack stacks just enough and corrects). Costs in ms.",
+  "methods": ["LazyStack", "ABC", "Cost-Cascade"],
+  "rows": [
+    {
+      "id": "img-easy", "kind": "image", "dataset": "CIFAR-100", "true": "sunflower",
+      "prompt": "a canonical sunflower",
+      "LazyStack":     { "steps": [["resnet50","sunflower",false],["mobilenet_v2","sunflower",false]], "cost": 17, "correct": true,  "why": "substacker confidence 0.91 > θ" },
+      "ABC":           { "steps": [["resnet18","sunflower",false],["resnet50","sunflower",false]], "cost": 20, "correct": true,  "why": "cheap models agree" },
+      "Cost-Cascade":  { "steps": [["mobilenet_v2","sunflower",false],["resnet18","sunflower",false]], "cost": 9, "correct": true, "why": "single-model confidence 0.88 > θ" }
+    },
+    {
+      "id": "img-hard", "kind": "image", "dataset": "CIFAR-100", "true": "leopard",
+      "prompt": "a leopard (easily confused with a tiger)",
+      "LazyStack":     { "steps": [["resnet50","tiger",true],["mobilenet_v2","leopard",false],["efficientnet_b3","leopard",false],["resnet101","leopard",false]], "cost": 83, "correct": true,  "why": "first model wrong; stacking corrects, conf 0.88 > θ" },
+      "ABC":           { "steps": [["mobilenet_v2","tiger",true],["resnet18","tiger",true],["resnet50","leopard",false],["efficientnet_b0","leopard",false],["efficientnet_b3","leopard",false]], "cost": 77, "correct": true, "why": "no agreement until 5 models run" },
+      "Cost-Cascade":  { "steps": [["mobilenet_v2","tiger",true],["resnet18","tiger",true]], "cost": 9, "correct": false, "why": "exits at conf 0.86 > θ — but wrong" }
+    },
+    {
+      "id": "txt-easy", "kind": "text", "dataset": "MMLU", "true": "B",
+      "prompt": "Which gas do plants absorb during photosynthesis?",
+      "LazyStack":     { "steps": [["electra_small","B",false],["albert_base","B",false]], "cost": 35, "correct": true, "why": "substacker confidence 0.93 > θ" },
+      "ABC":           { "steps": [["electra_small","B",false],["albert_base","B",false]], "cost": 35, "correct": true, "why": "models agree" },
+      "Cost-Cascade":  { "steps": [["electra_small","B",false]], "cost": 15, "correct": true, "why": "single-model confidence 0.90 > θ" }
+    },
+    {
+      "id": "txt-hard", "kind": "text", "dataset": "MMLU", "true": "B",
+      "prompt": "If marginal cost is below average total cost, what happens to ATC as output rises?",
+      "LazyStack":     { "steps": [["electra_small","A",true],["albert_base","B",false],["distilbert","B",false],["bert_base","B",false]], "cost": 105, "correct": true, "why": "first model wrong; stacking corrects, conf 0.87 > θ" },
+      "ABC":           { "steps": [["electra_small","A",true],["albert_base","B",false],["distilbert","B",false],["bert_base","B",false],["deberta_base","B",false]], "cost": 160, "correct": true, "why": "runs the full ensemble before agreeing" },
+      "Cost-Cascade":  { "steps": [["electra_small","A",true]], "cost": 15, "correct": false, "why": "exits at conf 0.83 > θ — but wrong" }
+    },
+    {
+      "id": "ids-hard", "kind": "tabular", "dataset": "NSL-KDD", "true": "probe",
+      "prompt": "a network flow resembling a port-scan probe",
+      "LazyStack":     { "steps": [["lightgbm","probe",false],["catboost","probe",false]], "cost": 36, "correct": true, "why": "MDP starts with LightGBM (not the cheapest); conf 0.94 > θ" },
+      "ABC":           { "steps": [["logistic","normal",true],["decision_tree","probe",false],["random_forest","probe",false],["lightgbm","probe",false]], "cost": 29, "correct": true, "why": "agreement only after 4 models" },
+      "Cost-Cascade":  { "steps": [["logistic","normal",true],["decision_tree","probe",false]], "cost": 2, "correct": false, "why": "exits at conf 0.86 > θ on a borderline flow — but wrong" }
+    }
+  ]
+}

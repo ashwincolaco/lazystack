@@ -1,0 +1,8 @@
+{
+  "_note": "Curated anchors for the interactive accuracy-vs-speedup playground, consistent with the paper's reported operating points (LazyStack point at the default exit threshold θ≈0.85, cost-weight α≈0.2). The live curve is interpolated between θ=0.5 (max speedup, slight accuracy drop), θ=0.85 (reported LazyStack point), and θ=0.99 (full ensemble: 1× speedup, ceiling accuracy).",
+  "datasets": {
+    "NSL-KDD":   { "fullAcc": 78.0, "lazyAcc": 76.8, "lazySpeed": 38,  "maxSpeed": 65, "accFloor": 74.5, "abc": { "acc": 75.7, "speed": 5.1 } },
+    "CIFAR-100": { "fullAcc": 78.0, "lazyAcc": 75.9, "lazySpeed": 2.5, "maxSpeed": 3.7, "accFloor": 74.0, "abc": { "acc": 74.1, "speed": 1.8 } },
+    "MMLU":      { "fullAcc": 77.8, "lazyAcc": 77.2, "lazySpeed": 2.6, "maxSpeed": 17, "accFloor": 75.6, "abc": { "acc": 76.5, "speed": 2.4 } }
+  }
+}
