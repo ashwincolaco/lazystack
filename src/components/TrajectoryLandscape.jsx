@@ -20,8 +20,9 @@ export default function TrajectoryLandscape() {
     <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap', justifyContent: 'center', maxWidth: 980, margin: '0 auto' }}>
       {/* trajectory coverage */}
       <div className="card" style={{ flex: '1 1 420px', minWidth: 320 }}>
+        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', color: C.blue, marginBottom: 6 }}>① Few trajectories → linear training</div>
         <div style={{ fontWeight: 700, marginBottom: 4 }}>{trajs.length} trajectories cover {dom}% of samples</div>
-        <div style={{ color: C.slate, fontSize: 13, marginBottom: 14 }}>out of 2⁶ = 64 possible execution paths</div>
+        <div style={{ color: C.slate, fontSize: 13, marginBottom: 14 }}>out of 2⁶ = 64 possible paths, so we train substackers for a handful of paths, not all combinations</div>
         {rows.map((r, i) => (
           <div key={i} onMouseEnter={() => setHover(i)} onMouseLeave={() => setHover(-1)}
             style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8, cursor: 'default' }}>
@@ -37,8 +38,9 @@ export default function TrajectoryLandscape() {
 
       {/* exit depth distribution */}
       <div className="card" style={{ flex: '1 1 360px', minWidth: 300 }}>
-        <div style={{ fontWeight: 700, marginBottom: 4 }}>Most samples exit early</div>
-        <div style={{ color: C.slate, fontSize: 13, marginBottom: 14 }}>models executed before exit (full ensemble = 6)</div>
+        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', color: C.green, marginBottom: 6 }}>② Shallow exits → big speedup</div>
+        <div style={{ fontWeight: 700, marginBottom: 4 }}>Most samples exit after 2–3 models</div>
+        <div style={{ color: C.slate, fontSize: 13, marginBottom: 14 }}>how many models run before the substacker is confident (full ensemble = 6)</div>
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 12, height: 150, paddingLeft: 6 }}>
           {ks.map((k) => (
             <div key={k} style={{ flex: 1, textAlign: 'center' }}>

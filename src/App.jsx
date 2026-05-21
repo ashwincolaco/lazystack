@@ -7,7 +7,6 @@ import MethodDiagram from './components/MethodDiagram'
 import TrajectoryLandscape from './components/TrajectoryLandscape'
 import TraceGrid from './components/TraceGrid'
 import Playground from './components/Playground'
-import TrajectorySankey from './components/TrajectorySankey'
 import OrderingToggle from './components/OrderingToggle'
 
 const PAPER_URL = 'https://icml.cc/virtual/2026/poster/63422'
@@ -52,8 +51,13 @@ export default function App() {
       </header>
 
       {/* ANIMATED HERO DEMO */}
-      <section style={{ paddingTop: 40 }}>
+      <section style={{ paddingTop: 36 }}>
         <div className="wrap">
+          <p className="prose" style={{ textAlign: 'center', marginBottom: 26, fontSize: 17 }}>
+            LazyStack runs models <b>one at a time</b>. After each, a small learned <b>substacker</b> — a meta-model that
+            combines all predictions seen so far into one <b>calibrated confidence</b> — decides whether to stop. If it's
+            confident enough, the cascade <b>exits early</b>; if not, it runs another model. Watch it on a real input:
+          </p>
           <HeroDemo />
           <p className="tagline" style={{ marginTop: 30 }}>
             Ensemble-quality predictions at <span className="hl">cascade-level cost</span> — up to{' '}
@@ -129,10 +133,8 @@ export default function App() {
       <section className="section-soft" id="scale">
         <div className="wrap">
           <Reveal>
-            <Head eyebrow="Analysis" title="Why it scales: trajectory concentration"
-              sub="Despite 2ᵏ possible execution paths, a handful of trajectories dominate, and most inputs exit after just two or three models." />
-            <TrajectorySankey />
-            <div style={{ height: 28 }} />
+            <Head eyebrow="Analysis" title="Why it scales"
+              sub="Two empirical facts make LazyStack tractable and fast — each chart below shows one." />
             <TrajectoryLandscape />
           </Reveal>
         </div>

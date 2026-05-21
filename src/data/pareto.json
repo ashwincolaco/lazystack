@@ -3,6 +3,7 @@
   "datasets": {
     "NSL-KDD":   { "fullAcc": 78.0, "lazyAcc": 76.8, "lazySpeed": 38,  "maxSpeed": 65, "accFloor": 74.5, "abc": { "acc": 75.7, "speed": 5.1 } },
     "CIFAR-100": { "fullAcc": 78.0, "lazyAcc": 75.9, "lazySpeed": 2.5, "maxSpeed": 3.7, "accFloor": 74.0, "abc": { "acc": 74.1, "speed": 1.8 } },
+    "ImageNet":  { "fullAcc": 84.2, "lazyAcc": 82.4, "lazySpeed": 2.7, "maxSpeed": 11, "accFloor": 81.0, "abc": { "acc": 81.0, "speed": 1.9 } },
     "MMLU":      { "fullAcc": 77.8, "lazyAcc": 77.2, "lazySpeed": 2.6, "maxSpeed": 17, "accFloor": 75.6, "abc": { "acc": 76.5, "speed": 2.4 } }
   }
 }

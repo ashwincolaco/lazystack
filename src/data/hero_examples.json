@@ -1,0 +1,29 @@
+{
+  "_note": "Hero-demo playlist: popular/hard datasets where LazyStack shines. Image is a real CIFAR-100 sample; per-step confidences curated, consistent with the method. Costs (ms) from models/model_registry.py.",
+  "theta": 0.85,
+  "examples": [
+    {
+      "dataset": "CIFAR-100", "domain": "image", "image": "./img/cifar_leopard.png",
+      "label": "leopard", "note": "easily confused with a tiger",
+      "full_cost": 105,
+      "costs": {"resnet50": 14, "mobilenet_v2": 3, "efficientnet_b3": 38, "resnet101": 28, "resnet18": 6, "efficientnet_b0": 16},
+      "steps": [["resnet50", "tiger", 0.46, true], ["mobilenet_v2", "leopard", 0.58, false], ["efficientnet_b3", "leopard", 0.79, false], ["resnet101", "leopard", 0.88, false]]
+    },
+    {
+      "dataset": "MMLU", "domain": "text",
+      "question": "If a firm's marginal cost is below its average total cost, what happens to average total cost as output rises?",
+      "choices": {"A": "It rises", "B": "It falls", "C": "It stays constant", "D": "It is at its minimum"},
+      "answer": "B",
+      "full_cost": 160,
+      "costs": {"electra_small": 15, "albert_base": 20, "distilbert": 25, "bert_base": 45, "deberta_base": 55},
+      "steps": [["electra_small", "A", 0.43, true], ["albert_base", "B", 0.62, false], ["distilbert", "B", 0.78, false], ["bert_base", "B", 0.88, false]]
+    },
+    {
+      "dataset": "NSL-KDD", "domain": "tabular",
+      "label": "a network flow resembling a port-scan probe",
+      "full_cost": 190.6,
+      "costs": {"lightgbm": 14.7, "catboost": 21.5, "logistic": 0.8, "decision_tree": 1.2, "mlp": 8.7, "random_forest": 12.5},
+      "steps": [["lightgbm", "probe", 0.74, false], ["catboost", "probe", 0.93, false]]
+    }
+  ]
+}
