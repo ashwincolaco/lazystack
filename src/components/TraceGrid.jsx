@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import T from '../data/traces.json'
+import Icon from './Icon'
+
+const KIND_ICON = { text: 'text', tabular: 'code', image: 'image' }
 
 const C = { blue: '#2563eb', green: '#10b981', red: '#ef4444', grey: '#cbd5e1', ink: '#0f172a', slate: '#475569', line: '#e2e8f0', amber: '#f59e0b' }
 const methodColor = { LazyStack: C.blue, ABC: '#8b5cf6', 'Cost-Cascade': C.amber }
@@ -54,7 +57,9 @@ export default function TraceGrid() {
               padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 12,
             }}>
               <span style={{ fontSize: 11, fontWeight: 700, color: C.slate, textTransform: 'uppercase', letterSpacing: '.04em', background: '#eef2ff', padding: '2px 8px', borderRadius: 6 }}>{row.dataset}</span>
-              {row.image && <img src={row.image} alt={row.true} style={{ width: 38, height: 38, borderRadius: 7, objectFit: 'cover', border: `1px solid ${C.line}` }} />}
+              {row.image
+                ? <img src={row.image} alt={row.true} style={{ width: 38, height: 38, borderRadius: 7, objectFit: 'cover', border: `1px solid ${C.line}` }} />
+                : <span style={{ width: 38, height: 38, borderRadius: 7, border: `1px solid ${C.line}`, background: '#f6f8fc', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: C.slate, flexShrink: 0 }}><Icon name={KIND_ICON[row.kind] || 'text'} size={18} /></span>}
               <span style={{ fontSize: 14, color: C.ink }}>{row.prompt}</span>
               <span style={{ marginLeft: 'auto', fontSize: 13, color: C.slate }}>true: <b>{row.true}</b></span>
               <span style={{ color: C.grey, transform: isOpen ? 'rotate(90deg)' : 'none', transition: 'transform .2s' }}>▸</span>

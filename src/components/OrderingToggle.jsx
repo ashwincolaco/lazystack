@@ -6,13 +6,13 @@ const C = { indigo: '#4f46e5', green: '#059669', amber: '#d97706', ink: '#0b1220
 // Each model row: [name, latency_ms]. The bar shows latency.
 const EX = {
   'CIFAR-100': {
-    input: 'a sunflower image',
+    input: 'a sunflower image', image: './img/sunflower.jpg',
     cheap: [['mobilenet_v2', 3], ['resnet18', 6], ['resnet50', 14], ['efficientnet_b0', 16], ['resnet101', 28]],
     mdp:   [['resnet50', 14], ['mobilenet_v2', 3]],
     why: 'The policy opens with resnet50 (14 ms), not the cheapest model — its higher confidence lets the substacker exit after two.',
   },
   'ImageNet': {
-    input: 'a leopard photo',
+    input: 'a leopard photo', image: './img/leopard.jpg',
     cheap: [['mobilenet_v2', 3], ['resnet18', 6], ['resnet50', 14], ['efficientnet_b0', 16], ['resnet101', 28], ['efficientnet_b3', 38]],
     mdp:   [['resnet50', 14], ['efficientnet_b3', 38]],
     why: 'The policy skips the cheap models that would not have resolved this image, opening with resnet50 then efficientnet_b3 — exiting in two.',
@@ -98,7 +98,10 @@ export default function OrderingToggle() {
             <button key={k} className={ds === k ? 'active' : ''} onClick={() => setDs(k)}>{k}</button>
           ))}
         </div>
-        <span style={{ fontSize: 13.5, color: C.slate }}>Input: <b style={{ color: C.ink }}>{e.input}</b></span>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 13.5, color: C.slate }}>
+          {e.image && <img src={e.image} alt={e.input} style={{ width: 30, height: 30, borderRadius: 6, objectFit: 'cover', border: `1px solid ${C.line}` }} />}
+          Input: <b style={{ color: C.ink }}>{e.input}</b>
+        </span>
         <button className="pill-btn" onClick={() => setStep(0)}>↻ Replay</button>
       </div>
 

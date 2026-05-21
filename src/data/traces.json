@@ -10,11 +10,11 @@
       "Cost-Cascade": { "steps": [["mobilenet_v2","tiger",true],["resnet18","tiger",true]], "cost": 9, "correct": false, "why": "exits at conf 0.86 > θ — but wrong" }
     },
     {
-      "id": "imagenet", "kind": "image", "dataset": "ImageNet", "true": "leopard", "image": "./img/leopard.jpg",
-      "prompt": "a leopard (vs. jaguar / snow leopard)",
-      "LazyStack":    { "steps": [["resnet50","jaguar",true],["efficientnet_b3","leopard",false]], "cost": 52, "correct": true, "why": "stacking corrects the first model, conf 0.89 > θ" },
-      "ABC":          { "steps": [["resnet18","jaguar",true],["resnet50","leopard",false],["efficientnet_b0","leopard",false],["efficientnet_b3","leopard",false]], "cost": 74, "correct": true, "why": "agreement only after 4 models" },
-      "Cost-Cascade": { "steps": [["mobilenet_v2","jaguar",true],["resnet18","jaguar",true]], "cost": 9, "correct": false, "why": "exits at conf 0.87 > θ — but wrong" }
+      "id": "imagenet", "kind": "image", "dataset": "ImageNet", "true": "tiger", "image": "./img/tiger.jpg",
+      "prompt": "a tiger (vs. leopard / cheetah)",
+      "LazyStack":    { "steps": [["resnet50","leopard",true],["efficientnet_b3","tiger",false]], "cost": 52, "correct": true, "why": "stacking corrects the first model, conf 0.90 > θ" },
+      "ABC":          { "steps": [["resnet18","leopard",true],["resnet50","tiger",false],["efficientnet_b0","tiger",false],["efficientnet_b3","tiger",false]], "cost": 74, "correct": true, "why": "agreement only after 4 models" },
+      "Cost-Cascade": { "steps": [["mobilenet_v2","leopard",true],["resnet18","leopard",true]], "cost": 9, "correct": false, "why": "exits at conf 0.87 > θ — but wrong" }
     },
     {
       "id": "nsl", "kind": "tabular", "dataset": "NSL-KDD", "true": "probe",
