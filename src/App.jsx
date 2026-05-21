@@ -1,6 +1,7 @@
 import React from 'react'
 import Icon from './components/Icon'
 import Reveal from './components/Reveal'
+import NavBar from './components/NavBar'
 import LazyStackTeaser from './components/LazyStackTeaser'
 import CascadeDemo from './components/CascadeDemo'
 import MethodDiagram from './components/MethodDiagram'
@@ -29,8 +30,9 @@ const Head = ({ eyebrow, title, sub }) => (
 export default function App() {
   return (
     <>
+      <NavBar paperUrl={PAPER_URL} />
       {/* HERO */}
-      <header className="hero">
+      <header className="hero" id="top">
         <div className="blob b1" /><div className="blob b2" />
         <div className="wrap">
           <span className="eyebrow">ICML 2026</span>
@@ -64,7 +66,7 @@ export default function App() {
       </section>
 
       {/* ABSTRACT */}
-      <section className="section-soft">
+      <section className="section-soft" id="abstract">
         <div className="wrap">
           <Reveal>
             <Head eyebrow="Abstract" title="Ensemble accuracy, cascade cost" />
@@ -84,7 +86,7 @@ export default function App() {
       </section>
 
       {/* PLAYGROUND */}
-      <section>
+      <section id="demo">
         <div className="wrap">
           <Reveal>
             <Head eyebrow="Interactive" title="Tune the accuracy–speed tradeoff"
@@ -128,7 +130,7 @@ export default function App() {
       </section>
 
       {/* METHOD */}
-      <section>
+      <section id="method">
         <div className="wrap">
           <Reveal>
             <Head eyebrow="Method" title="How LazyStack works" sub="Two offline components, one online inference loop." />
@@ -138,7 +140,7 @@ export default function App() {
       </section>
 
       {/* WHY IT SCALES */}
-      <section className="section-soft">
+      <section className="section-soft" id="scale">
         <div className="wrap">
           <Reveal>
             <Head eyebrow="Analysis" title="Why it scales: trajectory concentration"
@@ -151,7 +153,7 @@ export default function App() {
       </section>
 
       {/* RESULTS */}
-      <section>
+      <section id="results">
         <div className="wrap">
           <Reveal>
             <Head eyebrow="Results" title="Results at a glance" />
