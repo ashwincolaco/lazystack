@@ -177,7 +177,8 @@ export default function App() {
       </section>
 
       <footer>
-        LazyStack · ICML 2026 · built with React + Vite.
+        LazyStack · ICML 2026 · built with React + Vite.<br />
+        Leopard photo by kBandara, <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a> (via Flickr).
       </footer>
     </>
   )

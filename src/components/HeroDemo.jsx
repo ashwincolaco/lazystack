@@ -40,7 +40,7 @@ export default function HeroDemo() {
         {/* input row */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16, flexWrap: 'wrap' }}>
           <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', color: C.indigo, background: '#eef2ff', padding: '4px 9px', borderRadius: 6 }}>{ex.dataset}</span>
-          {ex.domain === 'image' && <img src={ex.image} alt={ex.label} style={{ width: 52, height: 52, borderRadius: 8, objectFit: 'cover', imageRendering: 'pixelated', border: `1px solid ${C.line}` }} />}
+          {ex.domain === 'image' && <img src={ex.image} alt={ex.label} style={{ width: 64, height: 64, borderRadius: 10, objectFit: 'cover', border: `1px solid ${C.line}` }} />}
           {ex.domain === 'tabular' && <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: 11, color: C.slate, background: '#f6f8fc', border: `1px solid ${C.line}`, borderRadius: 6, padding: '4px 8px' }}>proto=tcp · flag=S0 · 247 conn</span>}
           <span style={{ color: C.ink, fontSize: 15, flex: 1, minWidth: 180 }}>
             {ex.domain === 'text' ? ex.question : ex.domain === 'image' ? <>an image of a <i>{ex.label}</i> <span style={{ color: C.mute, fontSize: 13 }}>({ex.note})</span></> : ex.label}

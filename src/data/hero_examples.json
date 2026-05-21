@@ -3,7 +3,7 @@
   "theta": 0.85,
   "examples": [
     {
-      "dataset": "CIFAR-100", "domain": "image", "image": "./img/cifar_leopard.png",
+      "dataset": "CIFAR-100", "domain": "image", "image": "./img/leopard.jpg",
       "label": "leopard", "note": "easily confused with a tiger",
       "full_cost": 105,
       "costs": {"resnet50": 14, "mobilenet_v2": 3, "efficientnet_b3": 38, "resnet101": 28, "resnet18": 6, "efficientnet_b0": 16},

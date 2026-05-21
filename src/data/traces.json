@@ -3,14 +3,14 @@
   "methods": ["LazyStack", "ABC", "Cost-Cascade"],
   "rows": [
     {
-      "id": "cifar", "kind": "image", "dataset": "CIFAR-100", "true": "leopard", "image": "./img/cifar_leopard.png",
+      "id": "cifar", "kind": "image", "dataset": "CIFAR-100", "true": "leopard", "image": "./img/leopard.jpg",
       "prompt": "a leopard (easily confused with a tiger)",
       "LazyStack":    { "steps": [["resnet50","tiger",true],["mobilenet_v2","leopard",false],["efficientnet_b3","leopard",false],["resnet101","leopard",false]], "cost": 83, "correct": true,  "why": "first model wrong; stacking corrects, conf 0.88 > θ" },
       "ABC":          { "steps": [["mobilenet_v2","tiger",true],["resnet18","tiger",true],["resnet50","leopard",false],["efficientnet_b0","leopard",false],["efficientnet_b3","leopard",false]], "cost": 77, "correct": true, "why": "no agreement until 5 models run" },
       "Cost-Cascade": { "steps": [["mobilenet_v2","tiger",true],["resnet18","tiger",true]], "cost": 9, "correct": false, "why": "exits at conf 0.86 > θ — but wrong" }
     },
     {
-      "id": "imagenet", "kind": "image", "dataset": "ImageNet", "true": "leopard",
+      "id": "imagenet", "kind": "image", "dataset": "ImageNet", "true": "leopard", "image": "./img/leopard.jpg",
       "prompt": "a leopard (vs. jaguar / snow leopard)",
       "LazyStack":    { "steps": [["resnet50","jaguar",true],["efficientnet_b3","leopard",false]], "cost": 52, "correct": true, "why": "stacking corrects the first model, conf 0.89 > θ" },
       "ABC":          { "steps": [["resnet18","jaguar",true],["resnet50","leopard",false],["efficientnet_b0","leopard",false],["efficientnet_b3","leopard",false]], "cost": 74, "correct": true, "why": "agreement only after 4 models" },

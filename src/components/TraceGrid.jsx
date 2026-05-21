@@ -54,7 +54,7 @@ export default function TraceGrid() {
               padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 12,
             }}>
               <span style={{ fontSize: 11, fontWeight: 700, color: C.slate, textTransform: 'uppercase', letterSpacing: '.04em', background: '#eef2ff', padding: '2px 8px', borderRadius: 6 }}>{row.dataset}</span>
-              {row.image && <img src={row.image} alt={row.true} style={{ width: 34, height: 34, borderRadius: 6, objectFit: 'cover', imageRendering: 'pixelated', border: `1px solid ${C.line}` }} />}
+              {row.image && <img src={row.image} alt={row.true} style={{ width: 38, height: 38, borderRadius: 7, objectFit: 'cover', border: `1px solid ${C.line}` }} />}
               <span style={{ fontSize: 14, color: C.ink }}>{row.prompt}</span>
               <span style={{ marginLeft: 'auto', fontSize: 13, color: C.slate }}>true: <b>{row.true}</b></span>
               <span style={{ color: C.grey, transform: isOpen ? 'rotate(90deg)' : 'none', transition: 'transform .2s' }}>▸</span>
