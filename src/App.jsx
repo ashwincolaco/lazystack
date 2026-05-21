@@ -2,8 +2,7 @@ import React from 'react'
 import Icon from './components/Icon'
 import Reveal from './components/Reveal'
 import NavBar from './components/NavBar'
-import LazyStackTeaser from './components/LazyStackTeaser'
-import CascadeDemo from './components/CascadeDemo'
+import HeroDemo from './components/HeroDemo'
 import MethodDiagram from './components/MethodDiagram'
 import TrajectoryLandscape from './components/TrajectoryLandscape'
 import TraceGrid from './components/TraceGrid'
@@ -52,16 +51,14 @@ export default function App() {
         </div>
       </header>
 
-      {/* TEASER */}
-      <section>
+      {/* ANIMATED HERO DEMO */}
+      <section style={{ paddingTop: 40 }}>
         <div className="wrap">
-          <Reveal><LazyStackTeaser /></Reveal>
-          <Reveal>
-            <p className="tagline" style={{ marginTop: 32 }}>
-              Ensemble-quality predictions at <span className="hl">cascade-level cost</span> — up to{' '}
-              <span className="hl">38× speedup</span> at <span className="hl">97%+ accuracy retention</span>.
-            </p>
-          </Reveal>
+          <HeroDemo />
+          <p className="tagline" style={{ marginTop: 30 }}>
+            Ensemble-quality predictions at <span className="hl">cascade-level cost</span> — up to{' '}
+            <span className="hl">38× speedup</span> at <span className="hl">97%+ accuracy retention</span>.
+          </p>
         </div>
       </section>
 
@@ -92,17 +89,6 @@ export default function App() {
             <Head eyebrow="Interactive" title="Tune the accuracy–speed tradeoff"
               sub="Drag the exit threshold θ and cost-weight α and watch LazyStack move along its Pareto frontier — it dominates ABC at every operating point." />
             <Playground />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* CASCADE DEMO */}
-      <section className="section-soft">
-        <div className="wrap">
-          <Reveal>
-            <Head eyebrow="Interactive" title="Watch it run, on one input"
-              sub="Models execute one at a time along the MDP trajectory. A substacker aggregates predictions after each step; the cascade exits early once confidence crosses θ = 0.85 — often before a single model alone would even be correct." />
-            <CascadeDemo />
           </Reveal>
         </div>
       </section>
