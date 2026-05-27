@@ -10,7 +10,7 @@ import Playground from './components/Playground'
 import OrderingToggle from './components/OrderingToggle'
 
 const PAPER_URL = 'https://icml.cc/virtual/2026/poster/63422'
-const CODE_URL = 'https://anonymous.4open.science/r/lazystack-5DC4/'
+const CODE_URL = 'https://github.com/ucisharadlab/icml-lazystack'
 
 const AUTHORS = [
   'Ashwin Colaço', 'Sharad Mehrotra', 'Michael De Lucia', 'Kevin Hamlen',
